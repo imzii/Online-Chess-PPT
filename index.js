@@ -167,8 +167,7 @@ setInterval(() => {
                 console.log({
                     self: { email: player2.email, elo: player2.elo, name: player2.name },
                     opponent: { email: player1.email, elo: player1.elo, name: player1.name },
-                    game_id: game_id,
-                    is_first_player: (player2.elo < player1.elo)
+                    game_id: game_id
                 });
                 console.log(`${game_id}번 게임 시작!`);
             });
