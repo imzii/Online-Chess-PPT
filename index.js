@@ -139,12 +139,14 @@ setInterval(() => {
                 if (err) throw err;
                 const game_id = results.insertId;
                 player1.res.json({
+                    status: 'matched',
                     self: { email: player1.email, elo: player1.elo, name: player1.name },
                     opponent: { email: player2.email, elo: player2.elo, name: player2.name },
                     game_id: game_id,
                     is_first_player: (player1.elo < player2.elo)
                 });
                 player2.res.json({
+                    status: 'matched',
                     self: { email: player2.email, elo: player2.elo, name: player2.name },
                     opponent: { email: player1.email, elo: player1.elo, name: player1.name},
                     game_id: game_id,
@@ -179,7 +181,27 @@ app.post('/matchmaking', (req, res) => {
     console.log(player);
     player.joinTime = Date.now();
     player.res = res;
-    queue.push(player);
+    
+    let playerExists;
+    for (const existingPlayer of queue) {
+        if (existingPlayer.email === player.email) {
+            playerExists = true;
+        }
+    }
+    
+    if (!playerExists) {
+        queue.push(player);
+    }
+
+    setTimeout(() => {
+        if (!res.headersSent) {
+            const indexToRemove = queue.findIndex(existingPlayer => existingPlayer.email === player.email);
+            if (indexToRemove !== -1) {
+                queue.splice(indexToRemove, 1);
+            }
+            res.json({ status: 'unmatched', join_time: player.joinTime });
+        }
+    }, 5000);
 });
 
 app.post('/game/timer', (req, res) => {
@@ -227,7 +249,7 @@ app.post('/game/:game_id/chatting/connect', (req, res) => {
                 res.json({ email: "", message: "" });
             }
         }
-    }, 10000);
+    }, 5000);
 });
 
 app.post('/game/:game_id/chatting/chat', (req, res) => {
