@@ -1,7 +1,7 @@
 const express = require('express');
 const mysql = require('mysql2');
 const dotenv = require('dotenv');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { Chess } = require('chess.js');
 
 const app = express();
