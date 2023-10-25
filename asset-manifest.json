@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/imzii.github.io/static/css/main.b1a03b14.css",
+    "main.js": "/imzii.github.io/static/js/main.039be340.js",
+    "static/js/787.f587e8d5.chunk.js": "/imzii.github.io/static/js/787.f587e8d5.chunk.js",
+    "index.html": "/imzii.github.io/index.html",
+    "main.b1a03b14.css.map": "/imzii.github.io/static/css/main.b1a03b14.css.map",
+    "main.039be340.js.map": "/imzii.github.io/static/js/main.039be340.js.map",
+    "787.f587e8d5.chunk.js.map": "/imzii.github.io/static/js/787.f587e8d5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b1a03b14.css",
+    "static/js/main.039be340.js"
+  ]
+}
